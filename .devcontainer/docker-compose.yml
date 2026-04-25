@@ -1,0 +1,14 @@
+services:
+  dev-springboot4-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ..:/workspace:cached
+      - vault-springboot4-dev-secrets:/secrets
+    command: sleep infinity
+
+volumes:
+  vault-springboot4-dev-secrets:
+    external: true
+    name: vault-springboot4-dev-secrets

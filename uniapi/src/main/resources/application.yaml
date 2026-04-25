@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  config:
+    import: 'optional:file:/secrets/application-secrets.properties'
+  application:
+    name: uniapi
+  liquibase:
+    enabled: ${SPRING_LIQUIBASE_ENABLED:true}
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+    contexts:
+      - ${SPRING_PROFILES_ACTIVE:dev}
+  cloud:
+    vault:
+      enabled: ${SPRING_CLOUD_VAULT_ENABLED:false}

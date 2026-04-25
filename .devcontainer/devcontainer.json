@@ -1,0 +1,114 @@
+{
+  "name": "dev-springboot4",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "dev-springboot4-api",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  "postCreateCommand": "chmod +x ./uniapi/gradlew && ./uniapi/gradlew --no-daemon -p uniapi build -x test",
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "25",
+      "installGradle": "true",
+      "gradleVersion": "9.4.1"
+    },
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind",
+    "source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,type=bind",
+    "source=${localEnv:HOME}/.npmrc,target=/home/vscode/.npmrc,type=bind",
+    "source=${localEnv:HOME}/.npmrc,target=/home/vscode/.config/pnpm/rc,type=bind",
+    "source=/var/run/docker.sock,target=/var/run/docker.sock,type=bind"
+  ],
+  "customizations": {
+    "vscode": {
+      "settings": {
+        // Java settings
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.compile.nullAnalysis.mode": "automatic",
+
+        // Gradle performance
+        "gradle.autoDetect": "on",
+
+        //These are true by default in the Extension Pack for Java. Adding them just clutters your config.
+        // "java.import.gradle.java.home": "/usr/lib/jvm/msopenjdk-25",
+
+        // You are writing your app in Java, but your build scripts in Kotlin.
+        // This setting helps with autocomplete inside the build.gradle.kts file.
+        // However, the modern "Gradle for Java" extension usually handles this.
+        // Keep it if you find your Gradle scripts aren't getting autocomplete.
+        // "kotlin.languageServer.enabled": true,
+
+        // These are true by default in the Extension Pack for Java. Adding them just clutters your config.
+        // "java.import.gradle.enabled": true,
+        // "java.import.gradle.wrapper.enabled": true,
+
+        // Professionals use this to enforce code style (like Google Style or Spring Style).
+        // If you don't have a .xml file in that folder, this setting will do nothing or cause an error.
+        // If you are solo, you can likely ignore this
+        // "java.format.settings.url": ".vscode/java-formatter.xml",
+
+        // Terminal settings
+        "terminal.integrated.defaultProfile.linux": "bash",
+
+        // Formatting
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "[yaml]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode",
+          "editor.tabSize": 2
+        },
+
+        // UI improvements
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+        "editor.tabSize": 2,
+
+        // Error Lens
+        "errorLens.enabled": true,
+        "errorLens.excludeBySource": ["cSpell"],
+
+        // Disable inline Git commit author/summary annotations in editor
+        "gitlens.currentLine.enabled": false,
+
+        // Disable GitLens CodeLens annotations above symbols/blocks
+        "gitlens.codeLens.enabled": false,
+
+        "editor.quickSuggestions": {
+          "strings": true
+        },
+
+        "cSpell.words": ["uniapi", "feroz", "faiz", "springboot", "modulith", "gradlew", "ferozfaiz"]
+        // "cSpell.diagnosticLevel": "Information",
+        // "cSpell.showStatus": false
+      },
+      "extensions": [
+        "esbenp.prettier-vscode",
+        "mikestead.dotenv",
+        "usernamehw.errorlens",
+        "formulahendry.auto-rename-tag",
+        "ms-azuretools.vscode-docker",
+        "GitHub.copilot-chat",
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-spring-initializr",
+        "vscjava.vscode-spring-boot-dashboard",
+        "vscjava.vscode-java-test",
+        "redhat.vscode-yaml",
+        "redhat.vscode-xml",
+        "mhutchie.git-graph",
+        "eamodio.gitlens",
+        "fwcd.kotlin",
+        "vmware.vscode-spring-boot",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "alefragnani.Bookmarks",
+        "albert.TabOut",
+        "aaron-bond.better-comments",
+        "ms-ossdata.vscode-pgsql"
+      ]
+    }
+  }
+}

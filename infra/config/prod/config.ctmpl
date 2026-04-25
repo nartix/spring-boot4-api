@@ -1,0 +1,5 @@
+{{ with secret "apps/data/nextjs/dev" }}
+{
+  "db_password": "{{ .Data.data.test }}"
+}
+{{ end }}

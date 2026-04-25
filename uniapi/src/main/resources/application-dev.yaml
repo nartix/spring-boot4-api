@@ -1,0 +1,28 @@
+spring:
+  output:
+    ansi:
+      enabled: ALWAYS # Enable ANSI colors in the console output
+  devtools:
+    restart:
+      enabled: true # Enable automatic restart on code changes
+  datasource: # using postgresql
+    url: jdbc:postgresql://localhost:5432/app
+    username: app
+    password: app
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: validate # Validate the database schema
+    show-sql: true # Show SQL statements in the console
+    properties:
+      hibernate:
+        '[format_sql]': true # Format SQL statements for better readability
+        '[use_sql_comments]': true # Add comments to SQL statements for better debugging
+        dialect: org.hibernate.dialect.PostgreSQLDialect # Use PostgreSQL dialect for Hibernate
+# Quick level order (most verbose to least):
+# TRACE > DEBUG > INFO > WARN > ERROR.
+logging:
+  level:
+    root: INFO # Set the default logging level to INFO
+    '[org.springframework]': INFO # Set the logging level for Spring Framework to INFO
+    '[com.ferozfaiz]': DEBUG # Set the logging level for your application package to DEBUG
