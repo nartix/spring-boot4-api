@@ -6,10 +6,9 @@ spring:
     restart:
       enabled: true # Enable automatic restart on code changes
   datasource: # using postgresql
-    url: jdbc:postgresql://localhost:5432/app
-    username: app
-    password: app
-    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://${app.postgres.host:localhost}:${app.postgres.port:5432}/${app.postgres.database:app}
+    username: ${app.postgres.username:app}
+    password: ${app.postgres.password:app}
   jpa:
     hibernate:
       ddl-auto: validate # Validate the database schema

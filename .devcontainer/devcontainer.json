@@ -4,7 +4,7 @@
   "service": "dev-springboot4-api",
   "workspaceFolder": "/workspace",
   "shutdownAction": "stopCompose",
-  "postCreateCommand": "chmod +x ./uniapi/gradlew && ./uniapi/gradlew --no-daemon -p uniapi build -x test",
+  "postCreateCommand": "bash ./.devcontainer/post-create.sh",
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
       "version": "25",
@@ -14,6 +14,9 @@
     "ghcr.io/devcontainers/features/common-utils:2": {},
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
       "moby": false
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "latest"
     }
   },
   "mounts": [
@@ -81,9 +84,29 @@
           "strings": true
         },
 
-        "cSpell.words": ["uniapi", "feroz", "faiz", "springboot", "modulith", "gradlew", "ferozfaiz"]
+        // Spell checker settings
+        // "cSpell.words": ["uniapi"]
         // "cSpell.diagnosticLevel": "Information",
         // "cSpell.showStatus": false
+        "cSpell.import": ["${workspaceFolder}/.devcontainer/cspell.json"],
+        "cSpell.customDictionaries": {
+          "project-words": {
+            "name": "project-words",
+            "path": "${workspaceFolder}/.devcontainer/cspell-words.txt",
+            "scope": "workspace",
+            "addWords": true
+          }
+        },
+
+        // GitNexus settings
+        "mcp": {
+          "servers": {
+            "gitnexus": {
+              "command": "gitnexus",
+              "args": ["mcp"]
+            }
+          }
+        }
       },
       "extensions": [
         "esbenp.prettier-vscode",
